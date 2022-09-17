@@ -1,0 +1,21 @@
+<table class="table">
+  <tr class="table-header">
+    <th>Name</th>
+    <th>State</th>
+    <th>Target</th>
+    <th>Registered</th>
+    <th>Actions</th>
+  </tr>
+  <ng-container *ngIf="queue.length > 0; else emptyList">
+    <tr *ngFor="let item of queue" class="table-row">
+      <td class="row-record">{{item.name}}</td>
+      <td class="row-record">{{item.state}}</td>
+      <td class="row-record">{{item.target}}</td>
+      <td class="row-record">{{item.registered}}</td>
+      <td class="row-record">None</td>
+    </tr>
+  </ng-container>
+  <ng-template #emptyList>
+    <p class="empty">No items</p>
+  </ng-template>
+</table>
