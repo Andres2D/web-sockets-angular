@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs';
+import { QueueItem } from '../interfaces/queue.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,11 @@ export class QueueService {
   }
   
   getQueue() {
-    return this.socket.fromEvent('queue');
+    return this.socket.fromEvent<QueueItem[]>('queue');
+  }
+
+  callItem(id: string) {
+    this.socket.emit('call', id);
   }
   
   private requestMasterQueue(): void {
