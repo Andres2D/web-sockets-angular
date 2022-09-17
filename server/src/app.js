@@ -13,7 +13,7 @@ io.on('connection', socket => {
 
   // Get master queue
   socket.on('queue', () => {
-    io.emit(MOCK_MASTER_QUEUE);
+    io.emit('queue', MOCK_MASTER_QUEUE);
   });
 
   socket.on('disconnect', () => {
