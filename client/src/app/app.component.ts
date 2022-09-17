@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.queueService.checkConnectionStatus();
-    this.queueService.requestQueue();
+    this.queueService.getQueue().subscribe(queue => {
+      console.log(queue);
+    });
   }
-
 }

@@ -12,22 +12,18 @@ export class QueueService {
   checkConnectionStatus() {
     this.socket.on("connect", () => {
       console.log("Successfully connected: 🌐");
+      this.requestMasterQueue();
     });
     this.socket.on("disconnect", () => {
       console.log("Disconnected ⬇️");
     });
   }
-
-  requestQueue() {
-    const algo = this.socket.emit('queue');
-    console.log(algo);
-
-    this.socket.on('queue', (res: any) => {
-      console.log(res);
-    })
+  
+  getQueue() {
+    return this.socket.fromEvent('queue');
   }
-
-  getMessage() {
-    return this.socket.fromEvent('queue').pipe(map((data: any) => console.log(data)));
+  
+  private requestMasterQueue(): void {
+    this.socket.emit('queue');
   }
 }
