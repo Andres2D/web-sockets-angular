@@ -7,13 +7,19 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 const port = process.env.PORT || 3000;
+let queue = MOCK_MASTER_QUEUE;
 
 io.on('connection', socket => {
   console.log('New connection ⬆️');
 
   // Get master queue
   socket.on('queue', () => {
-    io.emit('queue', MOCK_MASTER_QUEUE);
+    io.emit('queue', queue);
+  });
+  
+  socket.on('call', (id) => {
+    queue = queue.filter(q => q.id !== id);
+    io.emit('queue', queue);
   });
 
   socket.on('disconnect', () => {
