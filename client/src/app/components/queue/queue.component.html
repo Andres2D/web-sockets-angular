@@ -12,7 +12,11 @@
       <td class="row-record">{{item.state}}</td>
       <td class="row-record">{{item.target}}</td>
       <td class="row-record">{{item.registered}}</td>
-      <td class="row-record">None</td>
+      <td *ngFor="let action of actions" class="row-record">
+        <button 
+          [ngClass]="{'danger': action.style === 'danger', 'success': action.style === 'success', 'button': true}" 
+          (click)="emitAction(action.id, item)">{{action.label}}</button>
+      </td>
     </tr>
   </ng-container>
   <ng-template #emptyList>
