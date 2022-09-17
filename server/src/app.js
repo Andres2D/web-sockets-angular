@@ -1,14 +1,20 @@
-const express = require('express');
-const http = require('http');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import { MOCK_MASTER_QUEUE } from './data/queue.js';
 const app = express();
 const server = http.createServer(app);
-const { Server } = require("socket.io");
 const io = new Server(server);
 
 const port = process.env.PORT || 3000;
 
 io.on('connection', socket => {
   console.log('New connection ⬆️');
+
+  // Get master queue
+  socket.on('queue', () => {
+    io.emit(MOCK_MASTER_QUEUE);
+  });
 
   socket.on('disconnect', () => {
     console.log('⬇️ User disconnected');
