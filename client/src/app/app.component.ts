@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueueService } from './services/queue.service';
+import { QueueItem } from './interfaces/queue.interface';
+import { MOCK_QUEUE } from './mock/queue.mock';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,14 @@ import { QueueService } from './services/queue.service';
 export class AppComponent implements OnInit {
   title = 'client';
 
+  masterQueue: QueueItem[] = MOCK_QUEUE;
+
   constructor(private queueService: QueueService) {}
 
   ngOnInit(): void {
-    this.queueService.checkConnectionStatus();
-    this.queueService.getQueue().subscribe(queue => {
-      console.log(queue);
-    });
+    // this.queueService.checkConnectionStatus();
+    // this.queueService.getQueue().subscribe(queue => {
+    //   console.log(queue);
+    // });
   }
 }
