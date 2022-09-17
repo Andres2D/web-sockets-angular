@@ -11,6 +11,7 @@ import { MOCK_QUEUE } from './mock/queue.mock';
 export class AppComponent implements OnInit {
   title = 'client';
 
+  currentItem: QueueItem[] = [MOCK_QUEUE[0]];
   masterQueue: QueueItem[] = MOCK_QUEUE;
 
   constructor(private queueService: QueueService) {}

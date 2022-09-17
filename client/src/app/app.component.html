@@ -1,1 +1,7 @@
-<app-queue></app-queue>
+<!-- In turn queue -->
+<h2 class="title">In turn</h2>
+<app-queue [queue]="currentItem"></app-queue>
+
+<h2 class="title">Waiting room</h2>
+<!-- Waiting queue -->
+<app-queue [queue]="masterQueue"></app-queue>
